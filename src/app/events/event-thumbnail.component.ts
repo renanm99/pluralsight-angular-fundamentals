@@ -1,5 +1,4 @@
-import{ Component, Input, Output } from '@angular/core'
-import { EventEmitter } from 'protractor';
+import{ Component, Input } from '@angular/core'
 
 @Component({
     selector: 'event-thumbnail',
@@ -11,22 +10,20 @@ import { EventEmitter } from 'protractor';
         <div>Price: \${{event.price}}</div>
         <div>
             <span>Location: {{event.location.address}}</span>
-            <span>&nbsp;</span>
-            <span>{{event.location.city}}, {{event.location.country}}</span>
+            
+            <span class="pad-left">{{event.location.city}}, {{event.location.country}}</span>
         </div>
-        <button class="btn btn-primary" (click)="handleClickMe()">
-        Click me</button>
     </div>
     `
+    ,
+    styles: [
+        `.pad-left{margin-left: 10px;}
+        .well{color:#bbb;}
+        `
+    ]
 })
 
 export class EventThumbnailComponent {
     //Passa informação de pai para filho [event]="event1"
     @Input() event:any;
-    @Output() eventClick = new EventEmitter();
-
-    handleClickMe(){
-        console.log('CLICKED!');
-        this.eventClick.emit('foo');
-    }
 }
